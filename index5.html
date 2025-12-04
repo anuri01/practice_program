@@ -43,6 +43,14 @@
             border-bottom: 1px solid #eee;
             padding: 10px;
             margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .del-btn {
+            background-color: #ff4d4d;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -51,19 +59,19 @@
     <h2>오늘의 한마디</h2>
 
     <div class="input-group">
-        <input type="text" id="guest-input" placeholder="이름을 입력하세요">
-        <button id="save-btn">등록</button>
+        <input type="text" id="todo-input" placeholder="이름을 입력하세요">
+        <button id="add-btn">추가</button>
     </div>
-    <ul id="guest-list">
-        <li>예시: 환영합니다. </li>
-        <li>예시: 환영합니다. </li>
+    <ul id="todo-list">
+
     </ul>
     <script>
-        const input = document.getElementById('guest-input');
-        const saveBtn = document.getElementById('save-btn');
-        const list = document.getElementById('guest-list');
+        const input = document.getElementById('todo-input');
+        const addBtn = document.getElementById('add-btn');
+        const list = document.getElementById('todo-list');
+        // const delBtn = document.getElementById('del')
 
-        saveBtn.addEventListener('click', () => {
+        addBtn.addEventListener('click', () => {
             const text = input.value;
 
             if (text === '') {
@@ -71,15 +79,43 @@
                 return;
             }
 
-            const newItem = document.createElement('li');
+            const newLi = document.createElement('li');
+            const newSpan = document.createElement('span')
+            newSpan.innerText = text;
 
-            newItem.innerText = text;
+            const delBtn = document.createElement('button');
+            delBtn.innerText = "삭제"
+            delBtn.classList.add('del-btn');
 
-            list.appendChild(newItem);
+            delBtn.addEventListener('click', (event) => {
+                event.target.parentElement.remove();
+
+            });
+
+            newLi.appendChild(newSpan);
+            newLi.appendChild(delBtn);
+
+            list.appendChild(newLi);
 
             input.value = '';
             input.focus();
-        })
+        });
+
+        const getUserData = async () => {
+            console.log("1. 데이터 요청 보낸...");
+
+            try {
+                const response = await fetch("https://아몰랑/users/1");
+                const user = await response.json();
+                console.log(user);
+            } catch (error) {
+                console.log("에러 발생");
+                console.log("에라 정보", error);
+            }
+
+        }
+
+        getUserData();
     </script>
 </body>
 
