@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+
+<body>
+    <header>
+        <h1>Grid 자주쓰는 패턴 실습</h1>
+    </header>
+    <h2> 1) 동일비율 3열 (repeat(3, 1fr))</h2>
+    <div class="wrapper grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="item">A</div>
+        <div class="item">B</div>
+        <div class="item">C</div>
+    </div>
+
+    <!-- 2. 좌측 고정 + 우측 유동 -->
+    <h2>2) 좌측 고정 200px + 우측 유동(1fr)</h2>
+    <div class="wrapper grid" style="grid-template-columns: 200px 1fr;">
+        <div class="item">Sidebar(200px)</div>
+        <div class="item">Content 영역(남은 공간: 1fr)</div>
+    </div>
+
+    <!-- 반응형 카드-->
+    <h2> 3) 반응형 카드 (auto-fit + minmax(200px, 1fr))</h2>
+    <p> 창 크기를 줄이면 카드가 한 줄에서 줄어들고, 늘리면 부드럽게 확장됨</p>
+    <div class="wrapper grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+    </div>
+    <!-- 4. 최소 150px 유지 -->
+    <h2>4) 최소 150px, 최대 auto-fill (카드 자동 배치)</h2>
+    <div class="wrapper grid" style="grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+    </div>
+
+    <!-- 5. 특정 아이템만 크게(span) -->
+    <h2>5) 특정 아이템 크게 만들기 (grid-column: span 2)</h2>
+    <div class="wrapper grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="item">1</div>
+        <div class="item big" style="grid-column: span 2;">2 (가로 2칸 차지)</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item big" style="grid-column: span 3;">5 (가로 3칸 차지)</div>
+    </div>
+
+    <!-- 6. auto-fill vs auto-fit 비교 -->
+    <h2>6) auto-fill vs auto-fit 비교</h2>
+
+    <h3>auto-fill (빈 칸도 유지하려 함)</h3>
+    <div class="wrapper grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+
+    <h3>auto-fit (아이템이 남는 공간을 확장해 메워줌)</h3>
+    <div class="wrapper grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex실습</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            transition: 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eee;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+        }
+
+        body.dark-mode {
+            background-color: #222;
+            color: white;
+        }
+
+        body.drak-mode nav {
+            background-color: #444;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">My Service</div>
+        <button id="mode-btn">Dark mode</button>
+    </nav>
+
+    <div style="padding: 20px;">
+        <h2>레이아웃과 인터랙션</h2>
+        <p>기획자가 코드를 알면 개발자와 대화가 빨라집닏.</p>
+    </div>
+</body>
+
+<script>
+    const btn = document.getElementById('mode-btn');
+    const body = document.body;
+
+    btn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            btn.innerText = "Light-mode";
+            btn.style.backgroundColor = "#fff";
+            btn.style.color = "#333"
+        } else {
+            btn.innerText = "Dark-mode";
+            btn.style.backgroundColor = "#333";
+            btn.style.color = "#fff"
+        }
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 맛집</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+
+        .card-list {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+
+        .card {
+            background-color: white;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        /* 하트 아이콘 스타일 */
+        .heart-icon {
+            font-size: 30px;
+            cursor: pointer;
+            /* 마우스 올리면 손가락 */
+            color: #ccc;
+            /* 기본은 회색 (빈 하트) */
+            transition: color 0.3s;
+        }
+
+        /* 하트가 활성화(active) 되었을 때 스타일 */
+        .heart-icon.active {
+            color: red;
+            /* 빨간색으로 변경 */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+            background-color: #333;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="card">
+        <h2>한정판 굿즈</h2>
+
+        <div class="heart-icon" id="my-heart">♥</div>
+
+        <p>기획자를 위한 마법의 아이템</p>
+
+        <p>현재 구매 수: <span id="count-display">0</span>개</p>
+        <div class="btn-group">
+            <button class="btn" id="buy-btn">구매하기 (+1)</button>
+            <button class="btn" id="cancle-btn">취소하기 (-1)</button>
+        </div>
+    </article>
+    <script>
+        const heartBtn = document.getElementById('my-heart')
+        const buyBtn = document.getElementById('buy-btn')
+        const cancleBtn = document.getElementById('cancle-btn')
+        const countSpan = document.getElementById('count-display')
+
+        let count = 0;
+
+        heartBtn.addEventListener('click', () => {
+            heartBtn.classList.toggle('active');
+            if (heartBtn.classList.contains('active')) {
+                console.log("찜하기 완료");
+            } else {
+                console.log("찜하기 취소");
+            }
+        });
+
+        buyBtn.addEventListener('click', () => {
+
+            if (count >= 10) {
+                alert("재고가 부족합니다! 10개 제한");
+            } else {
+                count = count + 1;
+                countSpan.innerText = count;
+            }
+        })
+
+        cancleBtn.addEventListener('click', () => {
+
+            if (count === 0) {
+                alert("찜한 제품이 없습니다. ");
+            } else {
+                count = count - 1;
+                countSpan.innerText = count;
+            }
+        })
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구조 잡기 연습</title>
+    <style>
+        /* 구조가 눈에 보이게 테두리만 칠함 */
+        header,
+        nav,
+        main,
+        section,
+        article,
+        aside,
+        footer {
+            border: 2px solid #333;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* 이름표 달아주기 */
+        header::before {
+            content: "<Header>";
+            color: red;
+            font-weight: bold;
+        }
+
+        main::before {
+            content: "<Main>";
+            color: blue;
+            font-weight: bold;
+        }
+
+        footer::before {
+            content: "<Footer>";
+            color: green;
+            font-weight: bold;
+        }
+
+        /* body {
+            margin: 0;
+            font-family: sans-serif;
+            transition: 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eee;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+        }
+
+        body.dark-mode {
+            background-color: #222;
+            color: white;
+        }
+
+        body.drak-mode nav {
+            background-color: #444;
+            box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+        } */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>서비스 로고</h1>
+        <nav>
+            <ul>
+                <li>메뉴1</li>
+                <li>메뉴2</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>서비스 소개</h2>
+            <p>우리 서비스는 기획자를 위해 태어남</p>
+        </section>
+        <section>
+            <h2>주요 기능</h2>
+            <article>
+                <h3>기능1: 자동화</h3>
+                <p>알아서 다 해줍니다. </p>
+            </article>
+            <article>
+                <h3>기능2: 분석</h3>
+                <p>데이터를 분석함</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>Copy</p>
+    </footer>
+    <script>
+        const btn = document.getElementById('mode-btn');
+        const body = document.body;
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                btn.innerText = "Light-mode";
+                btn.style.backgroundColor = "#fff";
+                btn.style.color = "#333"
+            } else {
+                btn.innerText = "Dark-mode";
+                btn.style.backgroundColor = "#333";
+                btn.style.color = "#fff"
+            }
+        })
+
+    </script>
+
+</html>
